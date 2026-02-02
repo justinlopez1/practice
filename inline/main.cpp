@@ -5,5 +5,5 @@
 #include "functions.h"
 
 int main() {
-    foo(6);
+    foo(5);
 }
