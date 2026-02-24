@@ -5,6 +5,12 @@
 #include "functions.h"
 #include <iostream>
 
+typedef struct point {
+    unsigned int x;
+    unsigned int y;
+} Point;
+
 void bar(int x) {
-    std::cout << "bars: " << x << std::endl;
+
+
 }
