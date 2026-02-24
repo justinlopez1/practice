@@ -6,6 +6,44 @@
 #include <stddef.h>
 #include <stdio.h>
 
+/*
+
+My earlier solution to get bits
+
+uint32_t get_bits(const uint8_t *buf, size_t buf_len,
+                  size_t bit_offset, size_t bit_len) {
+    if (bit_len > 32) return 0;
+    if (buf == NULL) return 0;
+    if (buf_len == 0) return 0;
+    if (bit_offset+bit_len > buf_len*8) return 0;
+
+    uint32_t ret = 0;
+
+    size_t index = bit_offset/8;
+    uint8_t bit_pos = bit_offset%8;
+    bit_offset %= 8;
+    uint8_t total_bits = 0;
+
+    while (total_bits < bit_len) {
+        uint8_t mask = ~((1<<bit_pos)-1);
+        mask &= buf[index];
+        if (bit_len - total_bits < 8) {
+            mask &= (1 << (bit_pos + bit_len-total_bits)) - 1;
+        }
+
+        ret |= (((uint32_t)(mask)) << total_bits) >> bit_offset;
+
+        total_bits += 8-bit_pos;
+        bit_pos = 0;
+        bit_offset = 0;
+        index++;
+    }
+
+    return ret;
+}
+
+*/
+
 /* Extract up to 32 bits */
 uint32_t get_bits(const uint8_t *buf, size_t buf_len,
                   size_t bit_offset, size_t bit_len) {
