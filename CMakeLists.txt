@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 4.1)
+cmake_minimum_required(VERSION 4.0)
 project(practice)
-add_subdirectory(fifo)
+
 add_subdirectory(counter)
 add_subdirectory(spacex)
 add_subdirectory(spsc)
@@ -8,3 +8,4 @@ add_subdirectory(inline)
 add_subdirectory(cstuff)
 add_subdirectory(memove)
 add_subdirectory(bits)
+add_subdirectory(spi-temp-driver)

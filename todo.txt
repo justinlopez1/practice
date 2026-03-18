@@ -1,0 +1,227 @@
+1. SPI Temperature Sensor Driver
+Given a raw SPI buffer (bytes), parse temperature data from a sensor
+Handle:
+    bit fields
+    signed values
+    error flags
+Output: temperature in °C
+
+2. Heater Control Loop
+Implement a basic control loop:
+    input: current temp, target temp
+    output: heater power (0–100%)
+Add:
+    deadband
+    clamp
+Bonus: simple PID
+
+3. Ring Buffer (Producer/Consumer)
+Implement a circular buffer:
+    fixed size
+    one producer, one consumer
+Functions:
+    push(uint8_t)
+    pop(uint8_t*)
+Handle overflow/underflow
+
+4. GPIO Bit Packing
+Pack 8 boolean signals into a single byte
+Extract them back out
+Emphasis: bit masking & shifting
+
+5. UART Packet Parser
+Parse a byte stream into packets:
+    header
+    length
+    payload
+    checksum
+Handle partial packets
+
+6. Thread-Safe Counter
+Multiple threads increment a counter
+Implement:
+    mutex version
+    atomic version
+Compare behavior
+
+7. Simple Scheduler
+Given tasks with intervals, run them at correct times
+No OS — just loop + timestamps
+
+8. Debounce Logic
+Implement button debounce:
+noisy input stream
+stable output
+
+9. Water Problem (H₂O)
+Threads for H and O
+Must call makeWater() only when:
+2 H + 1 O available
+Use:
+    semaphores / mutex / condition variables
+
+10. Bitfield Register Interface
+Given a 32-bit register:
+    set/clear fields
+    extract fields
+Example:
+    bits 0–3 = mode
+    bits 4–7 = error
+
+11. I2C Transaction State Machine
+Simulate:
+    START → ADDRESS → DATA → STOP
+    Handle ACK/NACK
+
+12. Fixed-Point Conversion
+Convert float → fixed-point (Q format)
+Convert back
+Example: Q8.8 or Q16.16
+
+13. Event Queue System
+Push events from ISR
+Process in main loop
+Avoid race conditions
+
+14. Producer Clocking Problem (like your previous one)
+Producer writes bit/byte
+Toggles clock line
+Consumer reads on edge
+Ensure:
+    timing correctness
+    ordering
+
+15. CRC / Checksum Implementation
+Implement:
+    simple checksum
+CRC-8 or CRC-16
+
+HARDER STUFF: ======================================================================
+
+16. Multi-Threaded Sensor Fusion Buffer
+Multiple sensors produce data at different rates
+One consumer fuses them
+Requirements:
+    no stale data
+    thread-safe
+    minimal latency
+
+17. Lock-Free Ring Buffer
+Implement SPSC buffer without mutex
+Use atomics only
+Handle wraparound correctly
+
+18. Real-Time Control Loop with Jitter
+Control loop must run every 10ms
+Input arrives with jitter
+Maintain stability
+Explain tradeoffs
+
+19. SPI DMA Driver Simulation
+Simulate:
+async SPI transfer using DMA
+API:
+    start_transfer()
+callback on completion
+Handle:
+    busy state
+    queueing
+
+20. Deadlock Debugging
+Given buggy threaded code
+Identify:
+    deadlock
+    race condition
+Fix it
+
+21. Priority Inversion Scenario
+Threads:
+    low, medium, high priority
+Show how inversion happens
+Fix with:
+    priority inheritance
+
+22. Packet Loss + Retransmission System
+Send packets over unreliable channel
+Implement:
+    ACK
+    retry
+    timeout
+
+23. Memory-Constrained Logger
+Fixed memory buffer
+Store logs:
+    timestamp
+    message ID
+Must:
+    never crash
+    overwrite safely
+
+24. Dynamic Bitstream Parser
+Parse non-byte-aligned data
+Example:
+    3-bit field, 5-bit field, etc.
+
+25. Multi-Core Safe Queue
+Multiple producers + consumers
+Avoid:
+    race conditions
+    starvation
+
+26. Software PWM Generator
+    Generate PWM in software
+    Multiple channels
+    Limited timer resolution
+
+27. Watchdog System
+Threads must “check in”
+If not → reset system
+Implement:
+    watchdog manager
+
+28. Sensor Fault Detection
+Input signal may:
+    freeze
+    spike
+    drift
+Detect faults robustly
+
+29. State Machine Explosion
+Complex system with:
+    multiple states
+    transitions
+Implement cleanly (no spaghetti)
+
+30. Interrupt vs Thread Race
+ISR updates data
+thread reads it
+Fix data corruption issue
+
+31. Bounded Blocking Queue with Timeout
+push() blocks if full
+pop() blocks if empty
+Add timeout support
+
+32. Clock Domain Crossing Simulation
+Data moves between:
+    fast domain
+    slow domain
+Prevent metastability issues (conceptually)
+
+33. Power-Aware Firmware
+System must:
+    sleep when idle
+    wake on interrupt
+Maintain correctness
+
+34. Binary Protocol Encoder/Decoder
+Encode structured data into byte stream
+Decode it back
+Handle:
+    endianess
+    alignment
+
+35. “Design + Code” Hybrid
+“Design firmware for a battery management subsystem”
+Then implement:
+    one critical piece (e.g., message handler or safety check)
