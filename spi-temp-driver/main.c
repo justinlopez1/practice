@@ -36,9 +36,13 @@ int parse_temperature(const uint8_t rx[2], float* temperature_c)
     if (reg & (1u << 15)) return 0;
     uint16_t temp_bits = (reg >> 2) & 0xFFF;
     // check neg for sign ext
+    /*
     if (temp_bits & (1u << 11)) {
         temp_bits |= 0xF000;
     }
+    */
+    // sign ext
+    temp_bits = (int16_t)(temp_bits << 4) >> 4; // this sht beautiful
     *temperature_c = (int16_t)temp_bits * 0.25f;
     return 1;
 }
