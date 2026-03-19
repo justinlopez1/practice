@@ -1,28 +1,8 @@
-1. SPI Temperature Sensor Driver
-Given a raw SPI buffer (bytes), parse temperature data from a sensor
-Handle:
-    bit fields
-    signed values
-    error flags
-Output: temperature in °C
+PRIORITY TODO:
+mpmc queue with blocking implementation
+redo the water thing but try harder to get atomic working and such
+some other synchronization question
 
-2. Heater Control Loop
-Implement a basic control loop:
-    input: current temp, target temp
-    output: heater power (0–100%)
-Add:
-    deadband
-    clamp
-Bonus: simple PID
-
-3. Ring Buffer (Producer/Consumer)
-Implement a circular buffer:
-    fixed size
-    one producer, one consumer
-Functions:
-    push(uint8_t)
-    pop(uint8_t*)
-Handle overflow/underflow
 
 4. GPIO Bit Packing
 Pack 8 boolean signals into a single byte
