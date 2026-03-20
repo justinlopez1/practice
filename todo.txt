@@ -1,9 +1,3 @@
-PRIORITY TODO:
-mpmc queue with blocking implementation
-redo the water thing but try harder to get atomic working and such
-some other synchronization question
-
-
 4. GPIO Bit Packing
 Pack 8 boolean signals into a single byte
 Extract them back out
