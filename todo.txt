@@ -1,3 +1,5 @@
+Button debouncing
+
 4. GPIO Bit Packing
 Pack 8 boolean signals into a single byte
 Extract them back out
